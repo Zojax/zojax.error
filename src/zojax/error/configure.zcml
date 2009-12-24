@@ -1,0 +1,75 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zope.error">
+
+  <class class="zope.error.error.ErrorReportingUtility">
+    <factory id="zope.app.ErrorLogging" />
+    <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+
+    <require
+       permission="zope.Public"
+       interface="zope.error.interfaces.IErrorReportingUtility" />
+    <require
+       permission="zope.ManageServices"
+       interface="zope.error.interfaces.ILocalErrorReportingUtility" />
+  </class>
+
+  <class class="zope.error.error.RootErrorReportingUtility">
+    <require
+       permission="zope.Public"
+       interface="zope.error.interfaces.IErrorReportingUtility" />
+    <require
+       permission="zope.ManageServices"
+       interface="zope.error.interfaces.ILocalErrorReportingUtility" />
+  </class>
+
+  <utility
+     provides="zope.error.interfaces.IErrorReportingUtility"
+     component="zope.error.error.globalErrorReportingUtility" />
+
+  <subscriber handler=".bootstrap.bootStrapSubscriber" />
+
+  <!--Error Logging Utility -->
+  <zojax:configlet
+     name="system.error"
+     schema=".interfaces.IErrorConfiglet"
+     class=".configlet.ErrorConfiglet"
+     title="Errors logging"
+     description="This configlet lists the exceptions that have occurred in this site recently."
+     permission="zope.ManageServices" />
+
+  <zojax:pagelet
+     name="index.html"
+     for=".interfaces.IErrorConfiglet"
+     class="zojax.controlpanel.browser.wizard.ConfigletEditWizard"
+     permission="zope.ManageServices" />
+
+  <zojax:pagelet
+     name="view"
+     type="wizard.step"
+     title="Errors"
+     for=".interfaces.IErrorConfiglet
+	  zojax.controlpanel.browser.interfaces.IConfigletEditWizard"
+    class=".view.ErrorConfiglet" 
+     permission="zope.ManageServices"
+     weight="1" />
+
+  <browser:page
+     name="showTextTBEntry.html"
+     template="texttbentry.pt"
+     for=".interfaces.IErrorConfiglet"
+     permission="zope.ManageServices" />
+
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IErrorConfiglet"
+     file="error.gif" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="zope.error.interfaces.IErrorReportingUtility"
+     file="error.gif" />
+
+</configure>

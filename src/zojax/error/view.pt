@@ -1,0 +1,121 @@
+<tal:block i18n:domain="zope.error"
+	   tal:define="url view/@@absolute_url">
+<tal:block
+   tal:define="entry python:view.errors.getLogEntryById(request.get('id'))">
+<br />
+
+<div tal:condition="not:entry" tal:define="entries view/errors/getLogEntries">
+
+  <em tal:condition="not:entries" i18n:translate="">
+    No exceptions logged.
+  </em>
+
+  <div class="z-table-container">
+    <table class="z-table" tal:condition="entries">
+      <thead>
+	<tr>
+	  <th i18n:translate="">Time</th>
+	  <th i18n:translate="">User</th>
+	  <th i18n:translate="">Exception</th>
+	</tr>
+      </thead>
+
+      <tbody>
+	<tr tal:repeat="entry entries"
+	    tal:attributes="class python:repeat['entry'].odd() and 'even' or 'odd'">
+	  <td>
+            <span tal:content="entry/time">Time</span>
+	  </td>
+	  <td>
+            <span tal:content="entry/username">joe</span>
+	  </td>
+	  <td valign="top">
+            <a href="showEntry" 
+               tal:attributes="href string:${url}/?id=${entry/id}">
+              <span tal:content="entry/type">AttributeError</span>:
+              <span tal:define="value entry/value"
+                    tal:content="python:len(value)<100 and value or value[:100] + '...'">
+              </span>
+            </a>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="z-form-controls">
+    <hr />
+    <input type="button" value="Refresh"
+	   class="z-form-button" 
+	   i18n:attributes="value refresh-button"
+	   tal:attributes="onclick string:window.location = '$url/'" />
+  </div>
+</div>
+
+<div tal:condition="entry">
+  <h3 i18n:translate="">Exception traceback</h3>
+
+  <div class="z-table-container">
+    <table class="z-table">
+      <tbody>
+	<tr class="even">
+	  <th i18n:translate="">Time</th>
+	  <td tal:content="entry/time">Time</td>
+	</tr>
+	<tr>
+	  <th i18n:translate="">User</th>
+	  <td tal:content="entry/username">joe</td>
+	</tr>
+	
+	<tr class="even">
+	  <th i18n:translate="">Request URL</th>
+	  <td tal:content="entry/url">http://zeomega.com</td>
+	</tr>
+	
+	<tr>
+	  <th i18n:translate="" class="nowrap">Exception Type</th>
+	  <td tal:content="entry/type">AttributeError</td>
+	</tr>
+	
+	<tr class="even">
+	  <th i18n:translate="" class="nowrap">Exception Value</th>
+	  <td tal:content="entry/value">zzope</td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+  <br/>
+
+  <h3 i18n:translate="">Traceback</h3>
+  <br />
+  
+  <div tal:condition="entry/tb_html" tal:content="structure entry/tb_html">
+    Traceback (HTML)
+  </div>
+  
+  <pre tal:condition="not:entry/tb_html" tal:content="entry/tb_text">
+    Traceback (text)
+  </pre>
+  
+  <p tal:condition="entry/tb_text">
+    <a href="" 
+       tal:attributes="href string:showTextTBEntry.html?id=${entry/id}" 
+       i18n:translate="">Display traceback as text</a>
+  </p>
+  <br />
+
+  <div tal:condition="entry/req_html" style="overflow:auto">
+    <h3 i18n:translate="">REQUEST</h3>
+    
+    <div tal:replace="structure entry/req_html"></div>
+  </div>
+
+  <div class="z-form-controls">
+    <input type="button" value="Return to log" 
+           class="z-form-button" i18n:attributes="value return-to-log-button" 
+	   tal:attributes="onclick string:window.location = '$url/'" />
+  </div>
+</div>
+
+</tal:block>
+</tal:block>
