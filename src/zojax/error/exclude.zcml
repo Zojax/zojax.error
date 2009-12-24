@@ -1,0 +1,7 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  
+  <!-- exclude will prevent from include -->
+  <exclude package="zope.error" />  
+  <exclude package="zope.app.error" />
+
+</configure>

@@ -1,0 +1,26 @@
+=======
+CHANGES
+=======
+
+0.3.1 (Unreleased)
+------------------
+
+
+0.3.0 (2009-08-28)
+------------------
+
+- 'ignored_exceptions' is not required
+
+- Allow send errors to mail addresses
+
+
+0.2.0 (2009-08-11)
+------------------
+
+- Update test for chameleon enabled setup
+ 
+
+0.1.0 (2009-06-02)
+------------------
+
+- Initial release.

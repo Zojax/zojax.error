@@ -1,0 +1,83 @@
+=============
+Browser tests
+=============
+
+    >>> from zope import component, interface
+    >>> from zope.interface import verify
+    >>> from zope.testbrowser.testing import Browser
+    >>> from zope.error.interfaces import IErrorReportingUtility
+
+    >>> root = getRootFolder()
+    >>> root.getSiteManager().getUtility(IErrorReportingUtility)
+    <zope.error.error.RootErrorReportingUtility ...>
+
+Admin browser
+
+    >>> admin = Browser()
+    >>> admin.addHeader("Authorization", "Basic mgr:mgrpw")
+    >>> admin.handleErrors = False
+
+Configlet
+
+    >>> admin.open('http://localhost/settings/')
+    >>> admin.getLink('Errors').click()
+
+    >>> print admin.contents
+    <!DOCTYPE html...
+    ...
+    <h1 class="z-content-title">Errors logging</h1>
+    <div class="z-content-description">This configlet lists the exceptions that have occurred in this site recently.</div>
+    ...
+    <em>
+        No exceptions logged.
+    </em>
+    ...
+    </html>
+
+    >>> admin.getLink('Configure').click()
+    >>> admin.getControl('Ignored exception types').value = 'TypeError\nUnauthorized'
+    >>> admin.getControl('Save').click()
+    >>> print admin.contents
+    <!DOCTYPE html...
+    ...
+    <div class="statusMessage">Data successfully updated.</div>
+    ...
+    </html>
+
+    >>> admin.open('http://localhost/unknown')
+    Traceback (most recent call last):
+    ...
+    NotFound: ...
+    
+    >>> admin.open('http://localhost/settings/system/error/')
+    >>> print admin.contents
+    <!DOCTYPE html...
+    ...
+    <table class="z-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>User</th>
+          <th>Exception</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd">
+          <td>
+                <span>...</span>
+          </td>
+          <td>
+                <span>mgr, zope.mgr, Manager, </span>
+          </td>
+          <td valign="top">
+                <a href="http://localhost/settings/system/error/index.html/view/?id=...">
+                  <span>NotFound</span>:
+                  <span>Object: &lt;zope...folder.Folder object at ...&gt;, name: u'unknown'</span>
+                </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    ...
+    </html>
+    
