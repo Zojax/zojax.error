@@ -11,6 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from zope.app.folder.interfaces import IFolder
 """
 
 $Id$
@@ -75,7 +76,8 @@ class ErrorConfiglet(object):
     def isAvailable(self):
         if super(ErrorConfiglet, self).isAvailable():
             sm = IComponentLookup(getUtility(IErrorReportingUtility))
-            if sameProxiedObjects(sm, getSite().getSiteManager()):
+            if sameProxiedObjects(sm, getSite().getSiteManager()) or \
+                IFolder.providedBy(getSite().__parent__):
                 return True
 
         return False
