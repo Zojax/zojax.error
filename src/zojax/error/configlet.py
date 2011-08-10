@@ -128,7 +128,7 @@ def raising(self, info, request=None):
                 })
 
         context = self.__parent__
-        while not ISite.providedBy(context) or context is None:
+        while not (ISite.providedBy(context) or context is None):
             context = getattr(context, '__parent__', None)
 
         if context is not None:
