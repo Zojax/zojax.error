@@ -1,4 +1,4 @@
-<tal:block i18n:domain="zope.error"
+<tal:block i18n:domain="zojax.error"
 	   tal:define="url view/@@absolute_url">
 <tal:block
    tal:define="entry python:view.errors.getLogEntryById(request.get('id'))">

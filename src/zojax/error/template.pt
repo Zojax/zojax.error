@@ -1,30 +1,30 @@
 <tal:block define="entry view/error">
-<h1>Exception traceback</h1>
+<h1 i18n:translate="">Exception traceback</h1>
 
 <div>
   <table>
     <tbody>
       <tr>
-	<th>Time</th>
+	<th i18n:translate="">Time</th>
 	<td tal:content="entry/time">Time</td>
       </tr>
       <tr>
-	<th>User</th>
+	<th i18n:translate="">User</th>
 	<td tal:content="entry/username">joe</td>
       </tr>
       
       <tr>
-	<th>Request URL</th>
+	<th i18n:translate="">Request URL</th>
 	<td tal:content="entry/url">http://zeomega.com</td>
       </tr>
       
       <tr>
-	<th>Exception Type</th>
+	<th i18n:translate="">Exception Type</th>
 	<td tal:content="entry/type">AttributeError</td>
       </tr>
       
       <tr>
-	<th>Exception Value</th>
+	<th i18n:translate="">Exception Value</th>
 	<td tal:content="entry/value">zzope</td>
       </tr>
     </tbody>
@@ -33,12 +33,13 @@
 <br/>
 
 <a href="showEntry" 
+   i18n:translate=""
    tal:attributes="href string:${view/context/@@absolute_url}/?id=${entry/id}">
   View exception
 </a>
 <br /><br />
 
-<h3>Traceback</h3>
+<h3 i18n:translate="">Traceback</h3>
 <br />
   
 <div tal:condition="entry/tb_html" tal:content="structure entry/tb_html">
