@@ -1,0 +1,91 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Thu Dec  8 22:48:16 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/error/configure.zcml:35
+msgid "This configlet lists the exceptions that have occurred in this site recently."
+msgstr ""
+
+#: src/zojax/error/configure.zcml:35
+msgid "Errors logging"
+msgstr ""
+
+#: src/zojax/error/template.pt:12
+msgid "User"
+msgstr ""
+
+#: src/zojax/error/template.pt:17
+msgid "Request URL"
+msgstr ""
+
+#: src/zojax/error/template.pt:2
+msgid "Exception traceback"
+msgstr ""
+
+#: src/zojax/error/template.pt:22
+msgid "Exception Type"
+msgstr ""
+
+#: src/zojax/error/template.pt:27
+msgid "Exception Value"
+msgstr ""
+
+#: src/zojax/error/template.pt:35
+msgid "View exception"
+msgstr ""
+
+#: src/zojax/error/template.pt:42
+msgid "Traceback"
+msgstr ""
+
+#: src/zojax/error/template.pt:55
+msgid "REQUEST"
+msgstr ""
+
+#: src/zojax/error/template.pt:8
+msgid "Time"
+msgstr ""
+
+#: src/zojax/error/view.pt:101
+msgid "Display traceback as text"
+msgstr ""
+
+#: src/zojax/error/view.pt:114
+#. Default: "Return to log"
+msgid "return-to-log-button"
+msgstr ""
+
+#: src/zojax/error/view.pt:19
+msgid "Exception"
+msgstr ""
+
+#: src/zojax/error/view.pt:48
+#. Default: "Refresh"
+msgid "refresh-button"
+msgstr ""
+
+#: src/zojax/error/view.pt:9
+msgid "No exceptions logged."
+msgstr ""
+
